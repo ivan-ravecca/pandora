@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>This is a test for cross tab communication</title>
+	</head>
+	<body>
+		<button onclick="doStuffWIthLocalStorage()">Click me to mess local storage</button>
+		<script type="text/javascript">
+			console.warn("Local storage it's scoped by the protocol + hostname + port, so www.some.com will not be heared by www.some.com:1234 and so on.");
+			function doStuffWIthLocalStorage(){
+				console.log("Using doStuffWIthLocalStorage to mess the storage");
+				localStorage.setItem("myKey", (new Date()).toJSON());
+			}
+
+			window.addEventListener('storage', function(evt){
+				console.log(arguments);
+				console.info(' **** this guy gives you the following **** ');
+				console.info({
+					'evt.key' : evt.key, 
+					'evt.newValue' : evt.newValue, 
+					'evt.oldValue': evt.oldValue, 
+					'evt.url':evt.url,
+					'evt.storageArea':evt.storageArea
+				});
+
+			});
+		</script>
+	</body>
+</html>
