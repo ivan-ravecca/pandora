@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Examples of Scoping, Hoisting and some other stuff</title>
+	</head>
+	<body>
+	<pre>
+	Ejemplo 1
+var foo = 1;
+function bar() {
+	if (!foo) {
+		var foo = 10;
+	}
+	alert(foo);
+}
+bar();
+	</pre>
+	<hr>
+	<pre>
+Ejemplo 2
+var a = 1;
+function b() {
+	a = 10;
+	return;
+	function a() {}
+}
+b();
+alert(a);
+</pre>
+		<script type="text/javascript">
+			console.warn(" *** Examples of Scoping, Hoisting and some other stuff **** ");
+
+			console.group('Words of wisdom');
+			console.info("* Only functions create a new scope.");
+			console.groupEnd();
+		</script>
+	</body>
+</html>
