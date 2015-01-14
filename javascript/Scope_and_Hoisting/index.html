@@ -5,7 +5,7 @@
 	</head>
 	<body>
 	<pre>
-	Ejemplo 1
+Ejemplo 1
 var foo = 1;
 function bar() {
 	if (!foo) {
@@ -26,6 +26,34 @@ function b() {
 }
 b();
 alert(a);
+</pre>
+<hr>
+<pre>
+function test() {
+	foo(); // TypeError "foo is not a function"
+	bar(); // "this will run!"
+	var foo = function () { // function expression assigned to local variable 'foo'
+		alert("this won't run!");
+	}
+	function bar() { // function declaration, given the name 'bar'
+		alert("this will run!");
+	}
+}
+test();
+</pre>
+
+<pre>
+function test() {
+	bar(); // "this still will run!"
+	var foo = function () { // function expression assigned to local variable 'foo'
+		alert("this won't run!");
+	}
+	return; // ---¬ the declaration will be hoisting up so it can be found at the begining of the excecution.
+	function bar() { // function declaration, given the name 'bar'
+		alert("this will run!");
+	}
+}
+test();
 </pre>
 		<script type="text/javascript">
 			console.warn(" *** Examples of Scoping, Hoisting and some other stuff **** ");
