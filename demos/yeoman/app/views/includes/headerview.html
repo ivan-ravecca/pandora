@@ -1,0 +1,29 @@
+<div class="header">
+
+  <div class="navbar navbar-default" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a class="navbar-brand" href="#/">Brand name</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="js-navbar-collapse">
+--> {{currentSection}} <---
+        <ul class="nav navbar-nav">
+          <li ng-class="{{currentSection == 'inicio' ? 'active' : ''}}"><a href="#/">Inicio</a></li>
+          <li ng-class="{{currentSection == 'nosotros' ? 'active' : ''}}"><a ng-href="#/nosotros">Nosotros</a></li>
+          <li ng-class="{{currentSection == 'ProductosController' ? 'active' : ''}}"><a ng-href="#/productos">Productos</a></li>
+          <li ng-class="{{currentSection == 'obras' ? 'active' : ''}}"><a ng-href="#/obras">Obras</a></li>
+          <li ng-class="{{currentSection == 'contacto' ? 'active' : ''}}"><a ng-href="#/contacto">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
