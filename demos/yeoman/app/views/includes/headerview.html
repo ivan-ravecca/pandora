@@ -1,4 +1,4 @@
-<div class="header">
+<div class="header" ng-controller="HeaderController">
 
   <div class="navbar navbar-default" role="navigation">
     <div class="container">
@@ -15,13 +15,12 @@
       </div>
 
       <div class="collapse navbar-collapse" id="js-navbar-collapse">
---> {{currentSection}} <---
         <ul class="nav navbar-nav">
-          <li ng-class="{{currentSection == 'inicio' ? 'active' : ''}}"><a href="#/">Inicio</a></li>
-          <li ng-class="{{currentSection == 'nosotros' ? 'active' : ''}}"><a ng-href="#/nosotros">Nosotros</a></li>
-          <li ng-class="{{currentSection == 'ProductosController' ? 'active' : ''}}"><a ng-href="#/productos">Productos</a></li>
-          <li ng-class="{{currentSection == 'obras' ? 'active' : ''}}"><a ng-href="#/obras">Obras</a></li>
-          <li ng-class="{{currentSection == 'contacto' ? 'active' : ''}}"><a ng-href="#/contacto">Contacto</a></li>
+          <li ng-class="{active : isActiveSection('/') }"><a href="#/">Inicio</a></li>
+          <li ng-class="{active : isActiveSection('/nosotros') }"><a ng-href="#/nosotros">Nosotros</a></li>
+          <li ng-class="{active : isActiveSection('/productos') }"><a ng-href="#/productos">Productos</a></li>
+          <li ng-class="{active : isActiveSection('/obras') }"><a ng-href="#/obras">Obras</a></li>
+          <li ng-class="{active : isActiveSection('/contacto') }"><a ng-href="#/contacto">Contacto</a></li>
         </ul>
       </div>
     </div>

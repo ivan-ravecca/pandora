@@ -10,15 +10,16 @@
 angular.module('demoAngularApp').controller('MainController', [
   '$scope', 
   '$route',
-  'DATE_YEAR', 
-  'SITE_URL',
-  function ($scope, $route, DATE_YEAR, SITE_URL) {
+  '$location',
+  'siteConfig',
+  function ($scope, $route, $location, siteConfig) {
 
-  	console.info("MainController initialized");
+    $scope.siteConfig = siteConfig;
 
-    $scope.DATE_YEAR = DATE_YEAR;
-    $scope.SITE_URL = SITE_URL;
+    $scope.isActiveSection = function(section){
+      return section === $location.path();
+    };
 
-    $scope.currentSection = $route.current.scope.name;
+    console.info("MainController initialized");
 
   }]);

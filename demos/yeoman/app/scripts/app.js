@@ -36,6 +36,14 @@ angular
         templateUrl: 'views/productosview.html',
         controller: 'ProductosController'
       })
+      .when('/productos/:category?', {
+        templateUrl: 'views/productosview.html',
+        controller: 'ProductosController'
+      })
+      .when('/productos/:category/:productName?', {
+        templateUrl: 'views/productosview.html',
+        controller: 'ProductosController'
+      })
       .when('/obras', {
         templateUrl: 'views/obrasview.html',
         controller: 'ObrasController'
@@ -43,6 +51,10 @@ angular
       .when('/contacto', {
         templateUrl: 'views/contactoview.html',
         controller: 'ContactController'
+      })
+      .when('/arquitectura-aluminio-marca-registrada',{
+        templateUrl: 'views/marcaview.html',
+        controller: 'MarcaController'
       })
       .otherwise({
         redirectTo: '/'
@@ -52,8 +64,8 @@ angular
     $rootScope.mainConfig = { 'testConfig' : 'pepito' };
   });
 
-angular.module('demoAngularApp').constant("DATE_YEAR", (new Date()).getFullYear() );
-angular.module('demoAngularApp').constant("SITE_URL", location.host);
-
-
-//http://stackoverflow.com/questions/16199418/how-do-i-implement-the-bootstrap-navbar-active-class-with-angular-js
+angular.module('demoAngularApp').constant("siteConfig", {
+  'currentYear' : (new Date()).getFullYear(),
+  'siteUrl': location.host,
+  'siteName': 'Arquitectura &amp; Aluminio'
+});

@@ -17,6 +17,4 @@ angular.module('demoAngularApp').controller('HomeController', [
 
 	console.info("HomeController initialized");
 
-	console.log(['home', $route]);
-
 }]);

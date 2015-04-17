@@ -11,10 +11,14 @@ angular.module('demoAngularApp').controller('ProductosController', [
 	'$scope', 
 	'$controller', 
 	'$route',
-	function ($scope, $controller, $route) {
+	'$routeParams',
+	function ($scope, $controller, $route, $routeParams) {
 
   	angular.extend(this, $controller('MainController', {$scope: $scope}));
 
-  	console.info(["ProductosController initialized", $route]);
+  	console.info(["ProductosController initialized", $routeParams.category,
+  		$routeParams.productName
+  		]);
+  	$scope.urlParams = [$routeParams.category, $routeParams.productName];
 
   }]);

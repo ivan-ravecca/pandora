@@ -41,6 +41,19 @@ body {
   padding-top: 19px;
   color: #777;
   border-top: 1px solid #e5e5e5;
+
+  ul{
+    padding: 0px;
+  }
+  
+  li {
+    float: left;
+    padding-right: 10px;
+    list-style-type:none;
+  }
+  .container p{
+    clear:both;
+  }
 }
 
 .container-narrow > hr {
@@ -87,5 +100,12 @@ body {
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
     border-bottom: 0;
+  }
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 900px) {
+  .container {
+    max-width: 1024px;
   }
 }
