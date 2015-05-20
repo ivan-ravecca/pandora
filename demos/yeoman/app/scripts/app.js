@@ -32,11 +32,11 @@ angular
         templateUrl: 'views/arquitecturaview.html',
         controller: 'ArquitecturaController'
       })
-      .when('/productos', {
+      .when('/productos?', {
         templateUrl: 'views/productosview.html',
         controller: 'ProductosController'
       })
-      .when('/productos/:category?', {
+      .when('/productos/:category', {
         templateUrl: 'views/productosview.html',
         controller: 'ProductosController'
       })
