@@ -10,11 +10,10 @@
 angular.module('demoAngularApp').controller('HomeController', [
 	'$scope', 
 	'$controller', 
-	'$route',
-	function ($scope, $controller, $route) {
+	function ($scope, $controller) {
 
 	angular.extend(this, $controller('MainController', {$scope: $scope}));
 
-	console.info("HomeController initialized");
+	console.info('HomeController initialized');
 
 }]);

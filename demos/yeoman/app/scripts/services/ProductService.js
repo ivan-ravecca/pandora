@@ -8,20 +8,21 @@
  * Service in the demoAngularApp.
  */
 angular.module('demoAngularApp').service('ProductService', ['$q', 'ProductDTO', 'CategoryDTO', function ($q, ProductDTO, CategoryDTO) {
-	// AngularJS will instantiate a singleton by calling "new" on this function
+	// AngularJS will instantiate a singleton by calling 'new' on this function
 	// 
 	var _getProducts = function(page){
 		page = page || 0;
 
 		var defer = $q.defer(),
 		products = [],
-		categories = [];
+		categories = [],
+		i=null;
 
-		for(var i =0; i< 100; i++){
+		for(i =0; i< 100; i++){
 			categories.push(new CategoryDTO(i, 'Cat name ' + i, 'cat_url_' + i));
 		}
 
-		for(var i=0; i<100; i++){
+		for(i=0; i<100; i++){
 			products.push(new ProductDTO(i, 'Prod name ' + i, 'prod_url_' + i, (categories[i])));
 		}
 		defer.resolve(products);
@@ -32,7 +33,7 @@ angular.module('demoAngularApp').service('ProductService', ['$q', 'ProductDTO', 
 	_getProductByName = function(name){
 		var defer = $q.defer(),
 		i = 1,
-		products = new ProductDTO(i, 'Prod name ' + i, 'prod_url_' + i, (
+		products = new ProductDTO(i, 'Prod  ' + name + i, 'prod_url_' + i, (
 				new CategoryDTO(i, 'Cat name ' + i, 'cat_url_' + i)));
 		
 		defer.resolve(products);
@@ -42,7 +43,7 @@ angular.module('demoAngularApp').service('ProductService', ['$q', 'ProductDTO', 
 	_getProductById = function(id){
 		var defer = $q.defer(),
 		i = id,
-		p = new ProductDTO(id, 'Prod name ' + i, 'prod_url_' + i, (
+		products = new ProductDTO(id, 'Prod name ' + i, 'prod_url_' + i, (
 				new CategoryDTO(i, 'Cat name ' + i, 'cat_url_' + i)));
 		
 		defer.resolve(products);

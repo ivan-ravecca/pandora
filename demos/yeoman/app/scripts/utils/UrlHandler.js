@@ -12,7 +12,7 @@ angular.module('demoAngularApp')
 
         var UrlHandler = {
             getStringFromUrl : function (url){
-                return (!!url)? (url.split("-")).join(" ") : '';
+                return (!!url)? (url.split('-')).join(' ') : '';
             },
             getUrlFromString : function(url){
                 //TODO improve this to be smart

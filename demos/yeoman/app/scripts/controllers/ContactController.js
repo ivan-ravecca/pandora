@@ -11,6 +11,6 @@ angular.module('demoAngularApp').controller('ContactController', ['$scope', '$co
 
   	angular.extend(this, $controller('MainController', {$scope: $scope}));
 
-  	console.info("ContactController initialized");
+  	console.info('ContactController initialized');
 
   }]);

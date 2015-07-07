@@ -64,7 +64,7 @@ angular
     $rootScope.mainConfig = { 'testConfig' : 'pepito' };
   });
 
-angular.module('demoAngularApp').constant("siteConfig", {
+angular.module('demoAngularApp').constant('siteConfig', {
   'currentYear' : (new Date()).getFullYear(),
   'siteUrl': location.host,
   'siteName': 'Arquitectura &amp; Aluminio'

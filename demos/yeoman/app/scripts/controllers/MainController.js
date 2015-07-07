@@ -20,6 +20,6 @@ angular.module('demoAngularApp').controller('MainController', [
       return section === $location.path();
     };
 
-    console.info("MainController initialized");
+    console.info('MainController initialized');
 
   }]);

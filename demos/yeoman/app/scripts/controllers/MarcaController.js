@@ -11,6 +11,6 @@ angular.module('demoAngularApp').controller('MarcaController', ['$scope', '$cont
 
   	angular.extend(this, $controller('MainController', {$scope: $scope}));
 
-  	console.info(["MarcaController initialized", $scope.siteConfig]);
+  	console.info(['MarcaController initialized', $scope.siteConfig]);
 
   }]);

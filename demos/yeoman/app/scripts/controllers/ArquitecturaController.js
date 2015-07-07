@@ -11,6 +11,6 @@ angular.module('demoAngularApp').controller('ArquitecturaController', ['$scope',
 
   	angular.extend(this, $controller('MainController', {$scope: $scope}));
 
-  	console.info("ArquitecturaController initialized");
+  	console.info('ArquitecturaController initialized');
 
   }]);

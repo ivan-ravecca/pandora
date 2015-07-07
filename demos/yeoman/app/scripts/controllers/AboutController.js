@@ -11,6 +11,6 @@ angular.module('demoAngularApp').controller('AboutController', [ '$scope', '$con
 
   	angular.extend(this, $controller('MainController', {$scope: $scope}));
 
-  	console.info("AboutController initialized");
+  	console.info('AboutController initialized');
 
 }]);
