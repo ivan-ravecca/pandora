@@ -1,0 +1,25 @@
+<!doctype html>
+<html class="no-js">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width">
+	</head>
+	<body ng-app="demoAngularApp">
+			{{CONFIGS}}
+		<div class="container">
+			<ng-include src="'headerview.html'"></ng-include>
+
+			<div ng-view=""></div>
+			
+			<ng-include src="'footerview.html'"></ng-include>
+		</div>
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/angular-route/angular-route.min.js"></script>
+		<script src="app.js"></script>
+		<script src="MainController.js"></script>
+		<script src="MainService.js"></script>
+		<script src="directives/DemoDirective.js"></script>
+	</body>
+</html>
