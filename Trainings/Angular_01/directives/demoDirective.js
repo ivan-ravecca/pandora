@@ -7,12 +7,35 @@ angular.module('demoAngularApp').directive("demoDirective",
 		// MainService
 		var defer = $q.defer();
 		
-		MainService.getGitGubInfo(user).then(function(response){
-			defer.resolve(response);
+		MainService.getGitGubInfo(user).then(function(repos){
+			if( repos.length > 0 ){
+				defer.resolve(
+					"User " + user + " has " + repos.length 
+						+ " repos, one of them is " + repos[0].full_name
+				);
+			} else {
+				defer.resolve("No repos found");
+			}
+		}, function (error) {
+			defer.resolve(error);
 		});
 
 		return defer.promise;
-	}
+	};
+	var _debounce = function(func, wait, immediate) {
+		var timeout;
+		return function() {
+			var context = this, args = arguments;
+			var later = function() {
+				timeout = null;
+				if (!immediate) func.apply(context, args);
+			};
+			var callNow = immediate && !timeout;
+			$timeout.cancel(timeout);
+			timeout = $timeout(later, wait);
+			if (callNow) func.apply(context, args);
+		};
+	};
 	return {
 		restrict: 'E',
 		replace: true,
@@ -30,20 +53,23 @@ angular.module('demoAngularApp').directive("demoDirective",
 		},
 		controller : ['$scope', '$rootScope', function(scope, rootScope){
 			console.log("Directive scope");
-			
-			// Listen for any changes in the text box input filter 
-			scope.$watch('userInput', function(newVal, oldVal){
-				if ( !scope.runningLookUp && (newVal !== oldVal) && (newVal != undefined)){
-
-					// add debounce function
+			var debouncedCall = _debounce(function(user){
+				// add debounce function
+				if (user !== ""){
 					scope.runningLookUp = true;
-					retrieveJSON(newVal).then(function(repos){
-						var result = "User " + newVal + " has " + repos.length + " repos, one of them is " + repos[0].full_name;
+					retrieveJSON(user).then(function(result){
 						scope.result = result;
 						rootScope.$broadcast('DirectiveEvent', result);
 
 						scope.runningLookUp = false;
 					});
+				}
+			}, 1000);
+			// Listen for any changes in the text box input filter 
+			scope.$watch('userInput', function(newVal, oldVal){
+				if ( !scope.runningLookUp && (newVal !== oldVal) && (newVal != undefined)){
+					scope.result = "";
+					debouncedCall(newVal);
 				}
 			});	
 		}]

@@ -12,9 +12,13 @@ angular.module('demoAngularApp').service('MainService', ['$q', '$timeout', '$htt
 			method: 'GET',
 			url: url
 		}).then(function (response) {
-			defer.resolve(response.data);
+			if (response.data){
+				defer.resolve(response.data);
+			} else {
+				defer.reject("No content");
+			}
 		}, function (response) {
-			defer.resolve({'error': 'Some error trying fetching'});
+			defer.reject(response.data.message);
 		});
 		
 		return defer.promise;
