@@ -3,7 +3,7 @@
 angular.module('demoAngularApp').controller('MainController', [
 	'$scope', 
 	'$controller', 
-	'siteConfig',
+	'siteConfig', // <--- i can inject all included in the module (see app.js)
 	function ($scope, $controller, siteConfig) {
 
 		$scope.CONFIGS = {};
@@ -15,13 +15,14 @@ angular.module('demoAngularApp').controller('MainController', [
 		$scope.directiveOne = "";
 		$scope.directiveTwo = "";
 
+		//  hearing for the directive's emit event
 		var listener = $scope.$on('DirectiveEvent', function(event, value) {
 			$scope.directiveTwo = value;
 		});
 
 
 		$scope.$on('$destroy', function() {
-     		listener(); //removes the listener
-   		});
-
-}]);
+			listener(); //removes the listener
+		});
+	}
+]);

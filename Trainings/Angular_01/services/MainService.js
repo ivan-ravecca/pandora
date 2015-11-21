@@ -6,7 +6,7 @@ angular.module('demoAngularApp').service('MainService', ['$q', '$timeout', '$htt
 	var _getGitGubInfo = function (user) {
 		var defer = $q.defer();
 
-		var url = "https://api.github.com/users/"+ user +"/repos";
+		var url = 'https://api.github.com/users/'+ user +'/repos';
 
 		$http({
 			method: 'GET',
@@ -15,7 +15,7 @@ angular.module('demoAngularApp').service('MainService', ['$q', '$timeout', '$htt
 			if (response.data){
 				defer.resolve(response.data);
 			} else {
-				defer.reject("No content");
+				defer.reject('No content');
 			}
 		}, function (response) {
 			defer.reject(response.data.message);

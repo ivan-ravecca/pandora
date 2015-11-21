@@ -1,14 +1,16 @@
 'use strict';
 
 angular.module('demoAngularApp').directive("demoDirective", 
+	// injecting dependencies through its name 					here i can call them as i want
 	['$rootScope','MainService', '$q', '$timeout', function ($rootScope, MainService, $q, $timeout) {
 
+	// private  methods - logic that applies to directives behavior
 	var retrieveJSON = function (user) {
 		// MainService
 		var defer = $q.defer();
 		
-		MainService.getGitGubInfo(user).then(function(repos){
-			if( repos.length > 0 ){
+		MainService.getGitGubInfo(user).then(function (repos) {
+			if (repos.length > 0) {
 				defer.resolve(
 					"User " + user + " has " + repos.length 
 						+ " repos, one of them is " + repos[0].full_name
@@ -22,11 +24,12 @@ angular.module('demoAngularApp').directive("demoDirective",
 
 		return defer.promise;
 	};
-	var _debounce = function(func, wait, immediate) {
+	// underscore debounce function
+	var _debounce = function (func, wait, immediate) {
 		var timeout;
-		return function() {
+		return function () {
 			var context = this, args = arguments;
-			var later = function() {
+			var later = function () {
 				timeout = null;
 				if (!immediate) func.apply(context, args);
 			};
@@ -36,6 +39,8 @@ angular.module('demoAngularApp').directive("demoDirective",
 			if (callNow) func.apply(context, args);
 		};
 	};
+
+	// Directive definition
 	return {
 		restrict: 'E',
 		replace: true,
@@ -49,15 +54,15 @@ angular.module('demoAngularApp').directive("demoDirective",
 
 			scope.userInput = scope.result;
 			scope.runningLookUp = false;
-       		
+			
 		},
 		controller : ['$scope', '$rootScope', function(scope, rootScope){
-			console.log("Directive scope");
+			console.log("Directive controller");
 			var debouncedCall = _debounce(function(user){
 				// add debounce function
-				if (user !== ""){
+				if (user !== "") {
 					scope.runningLookUp = true;
-					retrieveJSON(user).then(function(result){
+					retrieveJSON(user).then(function (result) {
 						scope.result = result;
 						rootScope.$broadcast('DirectiveEvent', result);
 
@@ -66,8 +71,8 @@ angular.module('demoAngularApp').directive("demoDirective",
 				}
 			}, 1000);
 			// Listen for any changes in the text box input filter 
-			scope.$watch('userInput', function(newVal, oldVal){
-				if ( !scope.runningLookUp && (newVal !== oldVal) && (newVal != undefined)){
+			scope.$watch('userInput', function (newVal, oldVal) {
+				if (!scope.runningLookUp && (newVal !== oldVal) && (newVal != undefined)) {
 					scope.result = "";
 					debouncedCall(newVal);
 				}
