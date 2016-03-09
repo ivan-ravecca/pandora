@@ -26,6 +26,7 @@ build/Release
 # Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git-
 node_modules
+bower_components
 
 # Debug log from npm
 npm-debug.log
@@ -33,6 +34,8 @@ npm-debug.log
 # Sass cache folder
 .sass-cache
 
+# angular 2 stuff
+typings
 
-node_modules
-bower_components
+# Others
+*.map
