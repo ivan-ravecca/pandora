@@ -1,23 +1,11 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {Hero} from './hero';
 import {HeroDetailComponent} from './hero-detail.component';
+import {HeroService} from './hero.service';
 
-var HEROES: Hero[] = [
-	{ "id": 11, "name": "Mr. Nice" },
-	{ "id": 12, "name": "Narco" },
-	{ "id": 13, "name": "Bombasto" },
-	{ "id": 14, "name": "Celeritas" },
-	{ "id": 15, "name": "Magneta" },
-	{ "id": 16, "name": "RubberMan" },
-	{ "id": 17, "name": "Dynama" },
-	{ "id": 18, "name": "Dr IQ" },
-	{ "id": 19, "name": "Magma" },
-	{ "id": 20, "name": "Tornado" }
-];
 
 @Component({
     selector: 'my-app',
-    directives: [HeroDetailComponent],
     template: `
 		<h1>{{title}}</h1>
 		<my-hero-detail [hero]="selectedHero"></my-hero-detail>
@@ -29,8 +17,6 @@ var HEROES: Hero[] = [
 				<span class="badge">{{hero.id}}</span> {{hero.name}}
 			</li>
 		</ul>
-
-
 		`,
 	styles:[`
 	  .selected {
@@ -80,13 +66,31 @@ var HEROES: Hero[] = [
 	    margin-right: .8em;
 	    border-radius: 4px 0 0 4px;
 	  }
-	`]
+	`],
+	directives: [HeroDetailComponent],
+    // We have to teach the injector how to make a HeroService 
+    // by registering a HeroService provider.
+    providers: [HeroService]
 
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
+	// we add a constructor.
+	// we add to the component's providers metadata
+	// Now Angular will know to supply an instance of the HeroService when it creates a new AppComponent
+	constructor(private _heroService: HeroService) { }
+
 	selectedHero: Hero;
 	public title = 'Tour of Heroes';
-	public heroes = HEROES;
+	public heroes: Hero[];
 	onSelect(hero: Hero) { this.selectedHero = hero; }
+
+	getHeroes() {
+		this._heroService.getHeroesSlowly().then(heroes => this.heroes = heroes);
+	}
+
+	ngOnInit() {
+		this.getHeroes();
+	}
+
 }
