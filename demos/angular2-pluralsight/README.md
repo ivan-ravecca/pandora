@@ -1,4 +1,14 @@
-angular.io/docs
+# DOCS
+	angular.io/docs
+# Some more tools
+	https://cmatskas.com/getting-started-with-typescript-and-sublime-text/
+
+Data binding
+interpolation (DOM <---- component)
+one way binding (DOM <----- component) [attribute]
+Event binding (DOM -----> component) ~> (click)
+Two way binding (DOM <----> component) ~> [(ngModel)]
+
 ==== Servicess ====
 	Now all is a class (using Injectable)
 ==== Dependency injection ====
