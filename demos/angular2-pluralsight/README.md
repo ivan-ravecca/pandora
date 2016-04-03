@@ -97,3 +97,19 @@ There are pipes (instead of filters) and you can create them by using @Pipe deco
 ==== Lifecycle Hooks ====
 	We "implements" the hook (export class MyComponent implements OnInit..., then we need to to implement the method ngOnInit())
 --------------------
+
+==== HTTPD ====
+it's a separated module so we need to add a new script and dependency in order to use it,
+look at the map, handling error, .do(), .toPromise() and .finally() stuff here
+==== RXJs ====
+Reactive Js implements the async observable pattern.
+==== Async pipes receives a promise or observable as input and suscribes to the input,  emiting ther values as change arrives
+(when using this in the template we need top add "| async")
+
+==== Routing ====
+ANgular 1 vs Angular 2
+$routeProvider.when() ~~~~> @RouteConfig({})
+<ng-view> ~~~~>  <route-outlet>
+ng-href="" ~~~~> [routerLink]="linkParameters"
+$routeParams ~~~~> RouteParams
+$router ~~~~> Router
