@@ -1,0 +1,99 @@
+/* app css stylesheet */
+
+.menu {
+	list-style: none;
+	border-bottom: 0.1em solid black;
+	margin-bottom: 2em;
+	padding: 0 0 0.5em;
+}
+
+.menu:before {
+	content: "[";
+}
+
+.menu:after {
+	content: "]";
+}
+
+.menu > li {
+	display: inline;
+}
+
+.menu > li:before {
+	content: "|";
+	padding-right: 0.3em;
+}
+
+.menu > li:nth-child(1):before {
+	content: "";
+	padding: 0;
+}
+
+
+/* ------------------- */
+.col-centered{
+	margin: 0 auto;
+	float: none;
+	background: lightcyan;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+/* REMOVE MEEEE*/
+.color1{
+	background: antiquewhite;
+}
+.color2{
+	background: bisque;
+}
+/* REMOVE MEEEE*/
+
+.li-row-flex {
+	display: flex;
+}
+.div-col-flex{
+	flex: 0 1 auto;
+}
+.margin-left{
+	margin-left: 5%;
+}
+
+.entry li{
+	max-width: 251px;
+}
+.score .li-row-flex div:first-child{
+	width: 90px;
+}
+.score ul li:nth-child(even){
+	background: rgba(232, 232, 232, 0.6);
+}
+.moves .move-options{
+	display: flex;
+	justify-content: space-between;
+	margin: 5% 0 5% 0;
+}
+.moves span{
+	font-size: 1.5vw;
+}
+.moves .move-options label{
+	font-size: 4vw;
+	margin-right: 5%;
+	flex: 0 1 auto;
+}
+footer{
+	clear: both;
+	font-size: 0.7vw;
+}
+
+.winner h2{
+	font-size: 4vw;
+}
+.winner span{
+	font-size: 2vw;
+	margin: 5% 0 5% 0;
+	font-style: italic;
+}
