@@ -75,7 +75,7 @@ angular.module(__appModule + '.game')
 			stage: that.rounds.length + 1,
 			winnerExist: winner !== null,
 			player: winner
-		})
+		});
 		
 		$timeout(function (){
 			deferred.resolve({doWeHaveAWinner: (getWinnerObj()), rounds: that.rounds, players: that.players});
