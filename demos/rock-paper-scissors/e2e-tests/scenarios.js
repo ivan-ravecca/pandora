@@ -108,12 +108,6 @@ describe('my app', function() {
 				});
 			});
 
-			it('should show player A as first playing', function() {
-				element(turnTable).element(by.tagName('span')).getText().then(function(value){
-					expect(value).toEqual('AAA');
-				});
-			});
-
 			it('should perform turn', function() {
 				rock.click().then(function() {
 					rock.element(by.tagName('input')).getAttribute('checked').then(function(value){
@@ -171,6 +165,81 @@ describe('my app', function() {
 					expect(value).toContain('BBB');
 				});
 			});
+		});
+
+		describe('[Turn 2 & 3 - automatics]', function() {
+			/**
+			* This is not intended to test, just add data (because no mocked data)
+			* THIS IS NOT OK, it's only to demo pourposes
+			*/
+			it('NO TEST JUST SPEEDING UP THINGS', function() {
+				// player A ~ Rock
+				rock.click().then(function() {
+					button.click().then(function() {
+						// player B ~ Rock
+						rock.click().then(function() {
+							button.click().then(function() {
+								element.all(scoreTable).last().getText().then(function(value){
+									// Result Even
+									expect(value).toContain('Even');
+									// player A ~ Rock
+									rock.click().then(function() {
+										button.click().then(function() {
+											// player B - Paper
+											paper.click().then(function() {
+												button.click().then(function() {
+													element.all(scoreTable).last().getText().then(function(value){
+														// Result Player B
+														expect(value).toContain('BBB');
+														// player A ~ Rock
+														rock.click().then(function() {
+															button.click().then(function() {
+																// player B - Paper
+																paper.click().then(function() {
+																	expect(true).toBeTruthy();
+																});
+															});
+														});
+													});
+												});
+											});
+										});
+									});
+								});
+							});
+						});
+					});
+				});
+			});
+		});
+
+		describe('[WON]', function() {
+
+			it('Should navigate once it player wins', function() {
+				button.click().then(function() {
+					browser.sleep(500);
+					expect(browser.getLocationAbsUrl()).toMatch("/won");
+				});
+			});
+
+			it('Should Show Player BBB as winner', function() {
+				var winner = element(by.css('.winner span'));
+				expect(winner.getText()).toContain('BBB');
+			});
+
+			it('Should Show Button for play again', function() {
+				var winner = element(by.css('.winner button'));
+				expect(winner.getText()).toContain('Play again');
+			});
+
+			it('Should navigate to landing view once button is pressed', function() {
+				var winner = element(by.css('.winner button'));
+				winner.click().then(function() {
+					browser.sleep(500);
+					expect(browser.getLocationAbsUrl()).toMatch("/entry");
+				});
+			});
+			
 		});
 
 	});

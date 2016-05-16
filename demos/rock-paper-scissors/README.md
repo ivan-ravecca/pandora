@@ -41,6 +41,7 @@ Since this _is a demo_ nor is covered the permanent storing of the data nor some
 ### Rules
 
 Rules can change, the only needed is to change in **services/gameRules.service.js** the order, dependency or even add multiple elements that could be defeated by one element. The keys are string based.
+If you want to add more elements, you need to add them in the gameRules service and in the html to be handled (no extra configuration).
 
 ### What's used
 
@@ -59,4 +60,7 @@ Rules can change, the only needed is to change in **services/gameRules.service.j
 		- Misc: 
 			- Use of **$destroy** to cleanup data once directive/controller not longer used.
 			- Use of **promises**, most of them are single calls.
-		- Tests: I've only focused in a sub set of **e2e tests** to show some examples of testing, basic implementation (didn't split them or use "page" helpers to navigate)
+			- No use of ES6 to not configure tools for compiling.
+		- Tests: 
+			- I've only focused in a sub set of **e2e tests** to show some examples of testing, basic implementation (didn't split them or use "page" helpers to navigate) - see at _e2e-tests/scenarios.js_
+			- I've added a few browser.sleep() so you can see it navigating though app
