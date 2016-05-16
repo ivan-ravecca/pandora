@@ -1,9 +1,14 @@
 'use strict';
 
 angular.module(__appModule + '.game')
-
+/**
+ * Controller for landing page of game
+ * @param  {Object} $scope       ctrl scope
+ * @param  {Object} $location    $location service
+ * @param  {Object} GameService		Main game service
+  */
 .controller('PlayerEntryCtrl', 
-	['$scope', '$location', 'GameService', function($scope, $location, GameService) {
+	['$scope', '$location', 'GameService', function ($scope, $location, GameService) {
 	
 	$scope.players = {playerA: {name: null}, playerB: {name: null}};
 
@@ -16,6 +21,9 @@ angular.module(__appModule + '.game')
 			&& shortCut.playerA.name !== shortCut.playerB.name;
 	};
 
+	/**
+	 * Action button ~ start app state one both log in
+	 */
 	$scope.startGame = function () {
 		if (!$scope.isStartEnabled()) { 
 			return false; 

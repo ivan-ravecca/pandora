@@ -1,26 +1,13 @@
 # Game of Drones
 This is a demo app
 
-##Dependencies
-- This is forked by https://github.com/angular/angular-seed
-- Bootstrap
-- Font Awesome
-- [bower]: http://bower.io
-- [npm]: https://www.npmjs.org/
-- [node]: http://nodejs.org
-- [protractor]: https://github.com/angular/protractor
-- [jasmine]: http://jasmine.github.io
-- [karma]: http://karma-runner.github.io
-- [travis]: https://travis-ci.org/
-- [http-server]: https://github.com/nodeapps/http-server
-
-
 ## Run the Application
 
-By running this command you'll install build and start the appat _http://localhost:8000/app_
+By running those commands you'll install build and start the app at _http://localhost:8000/
 
 ```
-npm start
+npm install
+npm node-server-all
 ```
 
 ### Run e2e tests
@@ -40,8 +27,8 @@ Since this _is a demo_ nor is covered the permanent storing of the data nor some
 
 ### Rules
 
-Rules can change, the only needed is to change in **services/gameRules.service.js** the order, dependency or even add multiple elements that could be defeated by one element. The keys are string based.
-If you want to add more elements, you need to add them in the gameRules service and in the html to be handled (no extra configuration).
+Rules can change, the only needed is to change in **service/src/rules.js** the order, dependency or even add multiple elements that could be defeated by one element. The keys are string based.
+If you want to add more elements, you need to add them in the rules module and in the html to be handled (no extra configuration).
 
 ### What's used
 
@@ -55,7 +42,7 @@ If you want to add more elements, you need to add them in the gameRules service 
 	- Skeleton, instead of build views & components i've decided to go along classic strucure (templates, directive, controller, service, etc folders) to make it clear and easy to find. Downside, this will be harder to package if that's the intention.
 	- Elements:
 		- Controllers: one per view, to simplify
-		- Service: a couple of them, one it acts as "_game status machine_"; some deferred object were added to simulate service request time, as if the logic were resolved in the server side.
+		- Service: A single service to connect to a "_game status machine_" in the server side.
 		- Directive: a couple of small directives, in favor to show the use of it; one used **watcher and emits** the option.
 		- Misc: 
 			- Use of **$destroy** to cleanup data once directive/controller not longer used.
@@ -64,3 +51,20 @@ If you want to add more elements, you need to add them in the gameRules service 
 		- Tests: 
 			- I've only focused in a sub set of **e2e tests** to show some examples of testing, basic implementation (didn't split them or use "page" helpers to navigate) - see at _e2e-tests/scenarios.js_
 			- I've added a few browser.sleep() so you can see it navigating though app
+- Node
+	- Basic server usind express as a framework for REST apis.
+	- A couple of modules to handle rules logic and game logic.
+
+##Dependencies
+- This is forked by https://github.com/angular/angular-seed
+- Bootstrap
+- Font Awesome
+- [bower]: http://bower.io
+- [npm]: https://www.npmjs.org/
+- [node]: http://nodejs.org
+- [express]: http://expressjs.com
+- [protractor]: https://github.com/angular/protractor
+- [jasmine]: http://jasmine.github.io
+- [karma]: http://karma-runner.github.io
+- [travis]: https://travis-ci.org/
+- [http-server]: https://github.com/nodeapps/http-server

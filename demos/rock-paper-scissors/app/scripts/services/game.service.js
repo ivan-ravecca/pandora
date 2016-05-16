@@ -1,93 +1,75 @@
 'use strict';
 
 angular.module(__appModule + '.game')
-.factory('GameService', ['$q', '$timeout', 'GameRulesService', function($q, $timeout, GameRulesService) {
+.factory('GameService', ['$q', '$http', function($q, $http) {
 	var that = this;
-	var players = null;
-	var rounds = [];
-	
-	that.players = null;
-	that.rounds = [];
+	var urlPrefix = '/';
 
 	var initGame = function(players) {
 		var deferred = $q.defer();
-
-		that.rounds = [];
-		that.players = players ? players : null;
-
-		$timeout(function (){
-			deferred.resolve(true);
-		}, 100);
+		$http({
+			method: 'POST',
+			url: urlPrefix + 'game',
+			data: {
+				player_a: players.playerA.name,
+				player_b: players.playerB.name
+			}
+		}).then(function (response) {
+			if (response.data.players){
+				deferred.resolve(response.data);
+			} else {
+				deferred.reject('Error');
+			}
+		}, function (response) {
+			deferred.reject('Error');
+		});
 		return deferred.promise;
 	};
 
 	var getCurrentGames = function() {
 		var deferred = $q.defer();
-		$timeout(function (){
-			if (that.players) {
-				deferred.resolve({players: that.players, rounds: that.rounds});
+		$http({
+			method: 'GET',
+			url: urlPrefix + 'game/current'
+		}).then(function (response) {
+			if (response.data.players){
+				deferred.resolve(response.data);
 			} else {
-				deferred.reject();
+				deferred.reject(null); //no players
 			}
-		}, 100);
-		return deferred.promise;
-	};
-
-	var getWinnerObj = function() {
-		var players = {};
-		var shortCut = that.players;
-		if (shortCut === null){
-			return false; // you are getting directly to this controller
-		}
-		players[shortCut.playerA.name] = 0;
-		players[shortCut.playerB.name] = 0;
-		angular.forEach(that.rounds, function(round) {
-			if (round.winnerExist) {
-				players[round.player.name]++;
-			}
+		}, function (response) {
+			deferred.reject('Error');
 		});
-		if (players[shortCut.playerA.name] > 2) {
-			return shortCut.playerA;
-		} else if (players[shortCut.playerB.name] > 2) {
-			return shortCut.playerB;
-		} else {
-			return false;
-		}
+		return deferred.promise;
 	};
 
 	var performRound = function(optionPlayerA, optionPlayerB) {
 		var deferred = $q.defer();
-		var winner = null;
-
-		switch(GameRulesService.runRules(optionPlayerA, optionPlayerB)){
-			case 1: 
-				winner = that.players.playerA;
-				break;
-			case -1: 
-				winner = that.players.playerB;
-				break;
-			case 0: 
-				winner = null;
-				break;
-		}
-
-		that.rounds.push({
-			stage: that.rounds.length + 1,
-			winnerExist: winner !== null,
-			player: winner
+		$http({
+			method: 'PUT',
+			url: urlPrefix + 'game/current/play',
+			data: {
+				player_a: optionPlayerA,
+				player_b: optionPlayerB
+			}
+		}).then(function (response) {
+			deferred.resolve(response.data);
+		}, function (response) {
+			deferred.reject('Error');
 		});
-		
-		$timeout(function (){
-			deferred.resolve({doWeHaveAWinner: (getWinnerObj()), rounds: that.rounds, players: that.players});
-		}, 100);
 		return deferred.promise;
 	};
 
 	var getWinner = function() {
 		var deferred = $q.defer();
-		$timeout(function (){
-			deferred.resolve(getWinnerObj());
-		}, 100);
+		$http({
+			method: 'GET',
+			url: urlPrefix + 'game/current/winner'
+		}).then(function (response) {
+			deferred.resolve(response.data);
+		}, function (response) {
+			deferred.reject('Error');
+		});
 		return deferred.promise;
 	};
 
