@@ -13,11 +13,9 @@ angular.module(__appModule + '.game')
 		},
 		templateUrl: 'templates/score.html',
 		link: function (scope, element, attrs) {
-			console.log("Directive linking",scope);
 
 		},
 		controller : ['$scope', '$rootScope', function(scope, rootScope){
-			console.log("Directive controller");
 		}]
 	};
 

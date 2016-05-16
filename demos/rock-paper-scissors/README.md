@@ -1,5 +1,6 @@
 # Game of Drones
 This is a demo app
+
 ##Dependencies
 - This is forked by https://github.com/angular/angular-seed
 - Bootstrap
@@ -12,3 +13,50 @@ This is a demo app
 - [karma]: http://karma-runner.github.io
 - [travis]: https://travis-ci.org/
 - [http-server]: https://github.com/nodeapps/http-server
+
+
+## Run the Application
+
+By running this command you'll install build and start the appat http://localhost:8000/app
+
+```
+npm start
+```
+
+### Run e2e tests
+Once you get up & running you can run the following command which will drive you along the entire app flow as long as the tests runs
+
+```
+npm run protractor
+```
+
+## Notice
+Since this an demo app and the seed's skeleton brings more tools than needed, it could be possible to find extra configuration/scripts that may not apply/work. It's intended to not add focus on those.
+
+## The game
+
+It's intended the user to go along the whole flow, from the start, not refreshing the page, in that situation the app will reset the data.
+Since this is a demo nor is covered the permanent storing of the data nor some rules over user restrictions; also the design was not polished in favor of time, instead it's provided a basic clean design based on known tools such bootstrap and font awesome (game icons).
+
+### Rules
+
+Rules can change, the only needed is to change in services/gameRules.service.js the order, dependency or even add multiple elements that could be defeated by one element. The keys are string based.
+
+### What's used
+
+- CSS
+	- No use of pre-processors for the very small set of styles needed
+	- Flexbox in a couple of components
+
+- Javascript
+	- All the logic enclosed in the app.game module name.
+	- Route provider for views (states [ui-router] it would be much better option if this will be a large app, or have more time to add fancy stuff in this project).
+	- Skeleton, instead of build views & components i've decided to go along classica strucure (templates, directive, controller, service, etc folders) to make it clear and easy to find. Downside, this will be harder to package if that's the intention.
+	- Elements:
+		- Controllers: one per view, to simplify
+		- Service: a couple of them, one it acts as "game status machine"; some deferred object were added to simulate service request time, as if the logic were resolved in the server side.
+		- Directive: a couple of small directives, in favor to show the use of it; one used watcher and emits the option.
+		- Misc: 
+			- Use of $destroy to cleanup data once directive/controller not longer used.
+			- Use of promises, most of them are single calls.
+		- Tests: I've only focused in a sub set of e2e tests to show some examples of testing, basic implementation (didn't split them or use "page" helpers to navigate)
