@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Examples of Scoping, Hoisting and some other stuff</title>
-	</head>
-	<body>
-		<h2>Ejemplo 1</h2>
+
+<head>
+	<title>Examples of Scoping, Hoisting and some other stuff</title>
+</head>
+
+<body>
+	<h2>Ejemplo 1</h2>
 	<pre>
 var foo = 1;
 function bar() {
@@ -16,7 +18,7 @@ function bar() {
 bar();
 	</pre>
 	<hr>
-		<h2>Ejemplo 2</h2>
+	<h2>Ejemplo 2</h2>
 	<pre>
 
 var a = 1;
@@ -28,9 +30,9 @@ function b() {
 b();
 alert(a);
 </pre>
-<hr>
-		<h2>Ejemplo 3</h2>
-<pre>
+	<hr>
+	<h2>Ejemplo 3</h2>
+	<pre>
 function test() {
 	foo(); // TypeError "foo is not a function"
 	bar(); // "this will run!"
@@ -43,8 +45,8 @@ function test() {
 }
 test();
 </pre>
-<h2>Ejemplo 4</h2>
-<pre>
+	<h2>Ejemplo 4</h2>
+	<pre>
 function test() {
 	bar(); // "this still will run!"
 	var foo = function () { // function expression assigned to local variable 'foo'
@@ -57,23 +59,59 @@ function test() {
 }
 test();
 </pre>
-		<h2>Ejemplo 5</h2>
-		<pre>
-			foo();
-			otherFoo(); // Type error
-			function foo(){
-			  console.log("foo");
-			}
-			var otherFoo = function (){
-			  console.log("otherFoo");
-			}
+	<h2>Ejemplo 5</h2>
+	<pre>
+foo();
+otherFoo(); // Type error
+function foo(){
+	console.log("foo");
+}
+var otherFoo = function (){
+	console.log("otherFoo");
+}
 		</pre>
-		<script type="text/javascript">
-			console.warn(" *** Examples of Scoping, Hoisting and some other stuff **** ");
+	<h2>Ejemplo 6</h2>
+	<pre>
+{
+	foo = "foo"; //TDZ error. let will allocate label name but not initilize (you can't touch it yet)
+	let foo;
+}
+	var foo = "anotherFoo"; // will be hoisted; Hoisting will create variable but undefined.
+{
+	console.log(foo); // TDZ error, same as above
+	let foo = "Final foo";
+}
+		</pre>
+		<h2>Ejemplo 7 - Closure</h2>
+		<pre>
+			var foo = "foo";
+			var myFunc = function(){
+			  console.log(foo);
+			}
+			foo = "bar";
+			myFunc(); // bar, cause hoisting
+			// ------
+			// classic Examples
+for(let i =0; i<5; i++){
+	setTimeout(function(){
+		console.log(`i: ${i}`);
+	});
+}
+// VS
+for(var i =0; i<5; i++){
+	let j = i;
+	setTimeout(function(){
+		console.log(`j: ${j}`);
+	});
+}
+		</pre>
+	<script type="text/javascript">
+		console.warn(" *** Examples of Scoping, Hoisting and some other stuff **** ");
 
-			console.group('Words of wisdom');
-			console.info("* Only functions create a new scope.");
-			console.groupEnd();
-		</script>
-	</body>
+		console.group('Words of wisdom');
+		console.info("* Only functions create a new scope.");
+		console.groupEnd();
+	</script>
+</body>
+
 </html>
