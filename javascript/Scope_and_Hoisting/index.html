@@ -4,8 +4,8 @@
 		<title>Examples of Scoping, Hoisting and some other stuff</title>
 	</head>
 	<body>
+		<h2>Ejemplo 1</h2>
 	<pre>
-Ejemplo 1
 var foo = 1;
 function bar() {
 	if (!foo) {
@@ -16,8 +16,9 @@ function bar() {
 bar();
 	</pre>
 	<hr>
+		<h2>Ejemplo 2</h2>
 	<pre>
-Ejemplo 2
+
 var a = 1;
 function b() {
 	a = 10;
@@ -28,6 +29,7 @@ b();
 alert(a);
 </pre>
 <hr>
+		<h2>Ejemplo 3</h2>
 <pre>
 function test() {
 	foo(); // TypeError "foo is not a function"
@@ -41,7 +43,7 @@ function test() {
 }
 test();
 </pre>
-
+<h2>Ejemplo 4</h2>
 <pre>
 function test() {
 	bar(); // "this still will run!"
@@ -55,6 +57,17 @@ function test() {
 }
 test();
 </pre>
+		<h2>Ejemplo 5</h2>
+		<pre>
+			foo();
+			otherFoo(); // Type error
+			function foo(){
+			  console.log("foo");
+			}
+			var otherFoo = function (){
+			  console.log("otherFoo");
+			}
+		</pre>
 		<script type="text/javascript">
 			console.warn(" *** Examples of Scoping, Hoisting and some other stuff **** ");
 
